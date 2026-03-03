@@ -1,0 +1,32 @@
+@use "../abstracts/variables" as *;
+.cart {
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 4rem 10rem;
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    img {
+      border-radius: 0.4rem;
+    }
+  }
+  .contact {
+    max-width: 30rem;
+    border: none;
+    font-size: 1.5rem;
+    border: 0.2rem solid $orange-1;
+    border-color: $orange-1;
+    outline: none;
+    border-radius: 0.4rem;
+    padding: 0.1rem 0.3rem;
+  }
+}
+.final-price {
+  font-size: 1.5rem;
+  align-self: flex-end;
+}
+.price {
+  font-size: 1.5rem;
+}

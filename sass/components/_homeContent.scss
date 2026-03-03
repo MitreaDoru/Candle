@@ -1,0 +1,29 @@
+@use "../abstracts/variables" as *;
+.content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 2rem;
+  padding: 2rem 10rem;
+  .card {
+    width: 100%;
+    height: 25rem;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    position: relative;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    &:hover {
+      box-shadow: 0rem 0.4rem 1.5rem $white-3;
+    }
+    &:hover img {
+      transform: scale(1.2);
+    }
+  }
+}

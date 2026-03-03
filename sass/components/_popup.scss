@@ -1,0 +1,21 @@
+@use "../abstracts/variables" as *;
+.popup {
+  max-width: 30rem;
+  max-height: 6rem;
+  background-color: $orange-2;
+  text-align: center;
+  padding: 2rem 4rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  font-size: 1.5rem;
+  transform: translate(-10% -50%);
+  transition:
+    top 0.4s ease,
+    opacity 0.4s ease;
+  opacity: 0;
+}
+.show {
+  opacity: 1;
+}

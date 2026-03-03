@@ -1,0 +1,51 @@
+@use "../abstracts/variables" as *;
+.footer {
+  background: $dark-3;
+  color: $white-1;
+  padding: 6rem 0 0 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  .footer-container {
+    max-width: 130rem;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: 40px;
+    .footer-col {
+      text-align: center;
+      h3,
+      h4 {
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      p,
+      li {
+        font-size: 1.4rem;
+        line-height: 1.6;
+        color: $white-2;
+      }
+      a {
+        text-decoration: none;
+        color: $white-2;
+        transition: color 0.3s ease;
+        &:hover {
+          color: $orange-2;
+        }
+      }
+    }
+  }
+  .footer-bottom {
+    text-align: center;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid $dark-2;
+    font-size: 1.3rem;
+    color: $white-3;
+  }
+}
