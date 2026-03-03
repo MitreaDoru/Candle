@@ -11,13 +11,13 @@ function Header() {
     .reduce((total, quantity) => total + quantity, 0);
   return (
     <header>
-      <Link className="left" to={`/`}>
+      <Link className="left" to={`/Candle`}>
         <img src={logo} alt="candle" width={40} height={40} />
         <p className="name">Candle</p>
       </Link>
       <div className="right">
         <div className="cart-icon">
-          <Link to={`/cart`}>
+          <Link to={`/Candle/cart`}>
             <img src={cartIcon} alt="cart" width={40} height={40} />
             {itemsCount > 0 && <p className="cart-count">{itemsCount}</p>}
           </Link>
