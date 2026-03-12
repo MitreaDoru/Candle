@@ -83,6 +83,9 @@ header {
     display: flex;
     align-items: center;
     gap: 3rem;
+    .user {
+      cursor: pointer;
+    }
     .admin-panel a {
       text-decoration: none;
       color: $dark-1;

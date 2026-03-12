@@ -69,7 +69,7 @@ function Cart() {
           <h2>Your cart is empty</h2>
           <p>Looks like you haven't added any candles yet.</p>
 
-          <button className="btn-shop" onClick={() => navigate("/Candle")}>
+          <button className="btn-shop" onClick={() => navigate("/Candle/")}>
             Continue Shopping
           </button>
         </div>

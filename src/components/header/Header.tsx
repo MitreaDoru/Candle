@@ -15,7 +15,7 @@ function Header() {
     .reduce((total, quantity) => total + quantity, 0);
   return (
     <header>
-      <Link className="left" to={`/Candle`}>
+      <Link className="left" to={`/Candle/`}>
         <img
           src={`/Candle/assets/candle-logo.png`}
           alt="candle"
