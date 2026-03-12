@@ -1,0 +1,15 @@
+@use "../abstracts/variables" as *;
+.alert {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background: $orange-1;
+  color: $white-1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}

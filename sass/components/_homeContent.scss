@@ -1,29 +1,46 @@
 @use "../abstracts/variables" as *;
+
 .content {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 2rem;
-  padding: 2rem 10rem;
+  padding: 2rem;
+
+  justify-items: center;
+
+  margin: 0 auto;
+  width: 100%;
+
+  @media (min-width: 760px) {
+    padding: 2rem 5%;
+  }
+
   .card {
     width: 100%;
-    height: 25rem;
+    border-radius: 1rem;
     overflow: hidden;
-    border-radius: 8px;
     cursor: pointer;
     position: relative;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $orange-2;
+    a {
+      width: 100%;
+    }
     img {
       width: 100%;
-      height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.5s ease;
     }
+
     &:hover {
       box-shadow: 0rem 0.4rem 1.5rem $white-3;
-    }
-    &:hover img {
-      transform: scale(1.2);
+      img {
+        transform: scale(1.1);
+      }
     }
   }
 }

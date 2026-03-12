@@ -8,8 +8,12 @@
 @use "components/button";
 @use "components/homeContent";
 @use "components/popup";
+@use "components/login";
+@use "components/alert";
 @use "layout/header";
 @use "layout/footer";
 @use "pages/home";
 @use "pages/cart";
+@use "pages/productDetails";
+@use "pages/admin";
 @use "components/productCard";

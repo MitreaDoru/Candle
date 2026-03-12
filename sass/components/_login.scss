@@ -1,0 +1,103 @@
+@use "../abstracts/variables" as *;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: $dark-2;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 1000;
+
+  @media (min-width: 480px) {
+    align-items: center;
+  }
+}
+
+.login-modal {
+  background: $white-3;
+  width: 42rem;
+  padding: 3rem;
+  border-radius: 1.6rem;
+  position: relative;
+  box-shadow: 0 2rem 5rem $dark-1;
+  animation: fadeIn 0.3s ease;
+
+  @media (min-width: 480px) {
+    padding: 4rem;
+  }
+
+  .switch-auth {
+    margin-top: 2rem;
+    color: $dark-1;
+    cursor: pointer;
+    font-size: 1.4rem;
+    text-align: center;
+
+    &:hover {
+      color: $orange-1;
+    }
+  }
+}
+
+.close-btn {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: $dark-1;
+
+  &:hover {
+    color: black;
+  }
+}
+
+.input-group {
+  margin-bottom: 2rem;
+
+  input {
+    width: 100%;
+    padding: 1.4rem 1.8rem;
+    border-radius: 1rem;
+    border: 1px solid $white-2;
+    font-size: 1.6rem;
+    transition: 0.3s;
+
+    &:focus {
+      border-color: $orange-1;
+      outline: none;
+      box-shadow: 0 0 0 3px $orange-2;
+    }
+  }
+}
+
+.login-btn {
+  width: 100%;
+  padding: 1.4rem;
+  background: linear-gradient(135deg, $orange-2, $orange-1);
+  color: white;
+  font-size: 1.6rem;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem $orange-1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

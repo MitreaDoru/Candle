@@ -1,29 +1,22 @@
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { add } from "../../features/actions/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { add, increment, decrement } from "../../features/actions/cartSlice";
 import type { AppDispatch } from "../../app/store";
-import { useState } from "react";
-function ProductCard({
-  item,
-}: {
-  item: {
-    id: number;
-    image: string;
-    name: string;
-    price: number;
-    quantity: number;
-  };
-}) {
+import { selectCart } from "../../features/actions/actionsSelectors";
+import type { Product } from "../../types/product";
+
+function ProductCard({ item }: { item: Product }) {
+  const cart = useSelector(selectCart);
   const dispatch = useDispatch<AppDispatch>();
-  const [count, setCount] = useState(item.quantity);
+  const existInCart = cart.filter((cartItem) => cartItem._id === item._id);
   return (
-    <div>
+    <div className="card">
       <Link
-        to={`/product/${item.id}`}
-        style={{ textDecoration: "none", display: "block", width: "20rem" }}
+        to={`/Candle/product/${item._id}`}
+        style={{ textDecoration: "none", display: "block" }}
       >
         <img
-          src={item.image}
+          src={`Candle/assets/${item.image}`}
           alt={item.name}
           style={{ cursor: "pointer", display: "block" }}
           width={200}
@@ -31,25 +24,38 @@ function ProductCard({
         />
       </Link>
       <div className="actions">
-        <div className="quantity">
-          <button className="btn" onClick={() => setCount(count - 1)}>
-            -
+        {(existInCart.length > 0 ? existInCart[0].quantity : 0) === 0 && (
+          <button
+            className="btn"
+            onClick={() => {
+              dispatch(add({ ...item, quantity: 1 }));
+            }}
+          >
+            Add to Cart
           </button>
-          <p className="count">{count}</p>
-          <button className="btn" onClick={() => setCount(count + 1)}>
-            +
-          </button>
-        </div>
-        <p className="price">${item.price}</p>
-        <button
-          className="btn"
-          onClick={() => {
-            dispatch(add({ ...item, quantity: count }));
-            setCount(0);
-          }}
-        >
-          Add to Cart
-        </button>
+        )}
+        {(existInCart.length > 0 ? existInCart[0].quantity : 0) > 0 && (
+          <div className="quantity">
+            <button
+              className="btn"
+              onClick={() => {
+                dispatch(decrement({ _id: item._id }));
+              }}
+            >
+              -
+            </button>
+            <p className="count">{`${existInCart.length > 0 ? existInCart[0].quantity : 0}`}</p>
+            <button
+              className="btn"
+              onClick={() => {
+                dispatch(increment({ _id: item._id }));
+              }}
+            >
+              +
+            </button>
+          </div>
+        )}
+        <p className="price">${item.price.toFixed(2)}</p>
       </div>
     </div>
   );

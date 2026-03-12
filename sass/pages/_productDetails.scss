@@ -1,0 +1,187 @@
+@use "../abstracts/variables" as *;
+$product-primary: #6c63ff;
+$product-bg: #f4f6fb;
+$product-text: #2c2c2c;
+
+.product-page {
+  background: $orange-2;
+  min-height: 100vh;
+  padding: 6rem 0;
+
+  .container {
+    max-width: 120rem;
+    margin: 0 auto;
+  }
+}
+
+.product-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  background: $white;
+  padding: 5rem;
+  border-radius: 2rem;
+  box-shadow: 0 2rem 5rem $dark-1;
+  @media (min-width: 992px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    padding: 5rem;
+  }
+}
+
+/* GALLERY */
+.gallery {
+  .main-image {
+    width: 100%;
+    border-radius: 1.6rem;
+  }
+
+  .thumbnails {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    img {
+      width: 10rem;
+      border-radius: 1.2rem;
+      cursor: pointer;
+      transition: 0.3s;
+      @media (min-width: 992px) {
+        grid-template-columns: 1fr 1fr;
+        gap: 6rem;
+        padding: 5rem;
+      }
+      &:hover {
+        transform: scale(1.05);
+        border: 2px solid $orange-1;
+      }
+    }
+  }
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+  h1 {
+    margin-bottom: 1rem;
+  }
+
+  .price {
+    font-size: 28px;
+    font-weight: bold;
+    color: $orange-1;
+    margin-bottom: 2rem;
+  }
+
+  .description {
+    font-size: 1.8rem;
+    color: $dark-3;
+    margin-bottom: 3rem;
+  }
+
+  .actions {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 4rem;
+
+    button {
+      padding: 1.4rem 2.8rem;
+      border-radius: 1.2rem;
+      font-size: 1.6rem;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: $orange-1;
+      color: white;
+
+      &:hover {
+        background-color: $orange-2;
+      }
+    }
+
+    .btn-secondary {
+      background: $white-1;
+
+      &:hover {
+        background: $white-2;
+      }
+    }
+  }
+}
+
+/* TAB CONTENT */
+.tab-content {
+  margin-top: 4rem;
+  background: white;
+  padding: 4rem;
+  border-radius: 2rem;
+  box-shadow: 0 2rem 4rem $dark-1;
+  @media (min-width: 768px) {
+    padding: 4rem;
+  }
+  .tabs {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    button {
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      position: relative;
+
+      &.active {
+        color: $orange-1;
+        font-weight: 600;
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background: $orange-1;
+          border-radius: 5px;
+        }
+      }
+    }
+  }
+  h2 {
+    margin-bottom: 2rem;
+  }
+  p {
+    font-size: 1.5rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td {
+      font-size: 1.5rem;
+      padding: 1.5rem;
+      border-bottom: 1px solid $white-1;
+    }
+
+    td:first-child {
+      font-weight: 600;
+      width: 30%;
+    }
+  }
+
+  .review {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+
+    span {
+      margin-left: 1rem;
+      color: gold;
+    }
+  }
+}

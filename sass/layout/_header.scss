@@ -1,33 +1,101 @@
 @use "../abstracts/variables" as *;
+// header {
+//   width: 100%;
+//   background-color: $orange-1;
+//   padding: 1rem;
+//   display: flex;
+//   justify-content: space-between;
+//   .left {
+//     display: flex;
+//     align-items: center;
+//     cursor: pointer;
+//     text-decoration: none;
+//     .name {
+//       color: $dark-1;
+//       font-size: 3rem;
+//       font-family: $font-main;
+//     }
+//   }
+//   .right {
+//     display: flex;
+//     align-items: center;
+//     gap: 3rem;
+//     .admin-panel {
+//       a {
+//         text-decoration: none;
+//         color: $dark-1;
+//         font-size: 3rem;
+//       }
+//     }
+//     .cart-icon {
+//       position: relative;
+//       cursor: pointer;
+//       .cart-count {
+//         position: absolute;
+//         right: -4px;
+//         top: -5px;
+//         color: $dark-1;
+//         width: 2rem;
+//         height: 2rem;
+//         text-align: center;
+//         background-color: $white;
+//         border-radius: 50%;
+//         font-weight: 700;
+//         font-size: 1.7rem;
+//       }
+//     }
+//     .user {
+//       cursor: pointer;
+//     }
+//     .btn-logout {
+//       background: none;
+//       border: none;
+//       color: $dark-1;
+//       font-size: 3rem;
+//       font-family: $font-main;
+//       cursor: pointer;
+//     }
+//   }
+// }
+@use "../abstracts/variables" as *;
+
 header {
   width: 100%;
   background-color: $orange-1;
-  padding: 1rem;
+  padding: 1rem 5%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   .left {
     display: flex;
     align-items: center;
     cursor: pointer;
     text-decoration: none;
     .name {
-      color: $text-color--dark;
+      color: $dark-1;
       font-size: 3rem;
       font-family: $font-main;
     }
   }
+
   .right {
     display: flex;
     align-items: center;
     gap: 3rem;
+    .admin-panel a {
+      text-decoration: none;
+      color: $dark-1;
+      font-size: 3rem;
+    }
     .cart-icon {
       position: relative;
       cursor: pointer;
       .cart-count {
         position: absolute;
-        right: -4px;
-        top: -5px;
-        color: $text-color--dark;
+        right: -0.4rem;
+        top: -0.5rem;
+        color: $dark-1;
         width: 2rem;
         height: 2rem;
         text-align: center;
@@ -37,7 +105,12 @@ header {
         font-size: 1.7rem;
       }
     }
-    .user {
+    .btn-logout {
+      background: none;
+      border: none;
+      color: $dark-1;
+      font-size: 3rem;
+      font-family: $font-main;
       cursor: pointer;
     }
   }

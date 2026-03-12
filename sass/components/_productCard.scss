@@ -5,8 +5,11 @@
   gap: 1rem;
   margin-top: 0.5rem;
   justify-content: space-between;
-  width: 20rem;
-
+  width: 100%;
+  padding: 1rem 1rem;
+  .price {
+    font-size: 2rem;
+  }
   .quantity {
     display: flex;
     align-items: center;

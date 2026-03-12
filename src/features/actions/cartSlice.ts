@@ -1,11 +1,13 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { Ingredient } from "../../types/ingredients";
 
 interface CartItem {
-  id: number;
+  _id: string;
   image: string;
   name: string;
   price: number;
   quantity: number;
+  ingredients: Ingredient[];
 }
 interface CartState {
   items: CartItem[];
@@ -29,15 +31,16 @@ const cartSlice = createSlice({
     add: (
       state,
       action: PayloadAction<{
-        id: number;
+        _id: string;
         image: string;
         name: string;
         price: number;
         quantity: number;
+        ingredients: Ingredient[];
       }>,
     ) => {
       const existingItem = state.items?.find(
-        (item) => item.id === action.payload.id,
+        (item) => item._id === action.payload._id,
       );
       if (existingItem) {
         existingItem.quantity += action.payload.quantity;
@@ -47,28 +50,34 @@ const cartSlice = createSlice({
         localStorage.setItem("cart", JSON.stringify(state.items));
       }
     },
+    clear: (state) => {
+      state.items = [];
+      localStorage.removeItem("cart");
+    },
     remove: (
       state,
       action: PayloadAction<{
-        id: number;
+        id: string;
       }>,
     ) => {
-      state.items = state.items.filter((item) => item.id !== action.payload.id);
+      state.items = state.items.filter(
+        (item) => item._id !== action.payload.id,
+      );
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
     increment: (
       state,
       action: PayloadAction<{
-        id: number;
+        _id: string;
       }>,
     ) => {
-      const item = state.items.find((item) => item.id === action.payload.id);
+      const item = state.items.find((item) => item._id === action.payload._id);
       if (!item) return;
       item.quantity += 1;
       localStorage.setItem("cart", JSON.stringify(state.items));
     },
-    decrement: (state, action: PayloadAction<{ id: number }>) => {
-      const item = state.items.find((item) => item.id === action.payload.id);
+    decrement: (state, action: PayloadAction<{ _id: string }>) => {
+      const item = state.items.find((item) => item._id === action.payload._id);
 
       if (!item) return;
 
@@ -77,7 +86,7 @@ const cartSlice = createSlice({
         localStorage.setItem("cart", JSON.stringify(state.items));
       } else {
         state.items = state.items.filter(
-          (item) => item.id !== action.payload.id,
+          (item) => item._id !== action.payload._id,
         );
         localStorage.setItem("cart", JSON.stringify(state.items));
       }
@@ -85,5 +94,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const { add, remove, increment, decrement } = cartSlice.actions;
+export const { add, remove, increment, decrement, clear } = cartSlice.actions;
 export default cartSlice.reducer;

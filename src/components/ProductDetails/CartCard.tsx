@@ -2,53 +2,42 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { remove, increment, decrement } from "../../features/actions/cartSlice";
 import type { AppDispatch } from "../../app/store";
-function CartCard({
-  item,
-}: {
-  item: {
-    id: number;
-    image: string;
-    name: string;
-    price: number;
-    quantity: number;
-  };
-}) {
+import type { Product } from "../../types/product";
+function CartCard({ item }: { item: Product }) {
   const dispatch = useDispatch<AppDispatch>();
   return (
     <div className="cart-item">
       <Link
-        to={`/product/${item.id}`}
+        to={`/product/${item._id}`}
         style={{ textDecoration: "none", display: "block", width: "6rem" }}
       >
         <img
-          src={item.image}
+          src={`/Candle/assets/${item.image}`}
           alt={item.name}
           style={{ cursor: "pointer", display: "block" }}
-          width={60}
-          height={60}
         />
       </Link>
       <div className="actions">
         <div className="quantity">
           <button
             className="btn"
-            onClick={() => dispatch(decrement({ id: item.id }))}
+            onClick={() => dispatch(decrement({ _id: item._id }))}
           >
             -
           </button>
           <p className="count">{item.quantity}</p>
           <button
             className="btn"
-            onClick={() => dispatch(increment({ id: item.id }))}
+            onClick={() => dispatch(increment({ _id: item._id }))}
           >
             +
           </button>
         </div>
-        <p className="price">${item.price * item.quantity}</p>
+        <p className="price">${(item.price * item.quantity).toFixed(2)}</p>
         <button
           className="btn"
           onClick={() => {
-            dispatch(remove({ id: item.id }));
+            dispatch(remove({ id: item._id }));
           }}
         >
           Delete
