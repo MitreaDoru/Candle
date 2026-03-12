@@ -4,7 +4,8 @@ import { add, increment, decrement } from "../../features/actions/cartSlice";
 import type { AppDispatch } from "../../app/store";
 import { selectCart } from "../../features/actions/actionsSelectors";
 import type { Product } from "../../types/product";
-
+import dotenv from "dotenv";
+dotenv.config();
 function ProductCard({ item }: { item: Product }) {
   const cart = useSelector(selectCart);
   const dispatch = useDispatch<AppDispatch>();
@@ -16,7 +17,7 @@ function ProductCard({ item }: { item: Product }) {
         style={{ textDecoration: "none", display: "block" }}
       >
         <img
-          src={`/assets/${item.image}`}
+          src={`${process.env.PUBLIC_URL}/assets/${item.image}`}
           alt={item.name}
           style={{ cursor: "pointer", display: "block" }}
           width={200}
