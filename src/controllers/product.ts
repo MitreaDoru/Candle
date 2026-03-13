@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ProductRequest, Item } from "../types/productTypes";
+import { ProductRequest } from "../types/productTypes";
 import Product from "../models/product";
 import Ingredients from "../models/ingredients";
 import { Ingredient } from "../types/ingredient";
