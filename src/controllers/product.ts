@@ -20,7 +20,6 @@ export const createProduct = async (
       });
       return;
     }
-    console.log(items);
     const price = items.reduce(
       (sum: number, item: Ingredient) => sum + item.value * item.multiplier,
       0,
@@ -53,6 +52,7 @@ export const createProduct = async (
       product: newProduct,
     });
   } catch (error) {
+    console.error("CREATE PRODUCT ERROR:", error);
     res.status(500).json({
       alert: {
         title: "Server Error",
