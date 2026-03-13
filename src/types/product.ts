@@ -10,6 +10,7 @@ export type Product = {
 };
 export type NewProduct = {
   name: string;
+  image: string;
   items: Ingredient[];
   ingredients: Ingredient[];
 };

@@ -49,8 +49,9 @@ const InputsCalculator: React.FC = () => {
       name: listName,
       items: usedItems,
       ingredients: items,
+      image: "candle-1.jpg",
     };
-
+    console.log(token);
     try {
       const response = await fetch("https://candle-1.onrender.com/product", {
         method: "POST",
@@ -65,8 +66,8 @@ const InputsCalculator: React.FC = () => {
       if (!response.ok) {
         throw new Error("Failed to save product");
       }
-
       const data = await response.json();
+      console.log(data.alert);
       dispatch(alert(data.alert));
       setTimeout(() => {
         dispatch(closeAlert());

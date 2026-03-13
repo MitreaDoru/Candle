@@ -12,7 +12,7 @@ function CartCard({ item }: { item: Product }) {
         style={{ textDecoration: "none", display: "block", width: "6rem" }}
       >
         <img
-          src={`/Candle/assets/${item.image}`}
+          src={`./assets/${item.image}`}
           alt={item.name}
           style={{ cursor: "pointer", display: "block" }}
         />
