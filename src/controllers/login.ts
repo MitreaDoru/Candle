@@ -17,7 +17,7 @@ export const getLogin = async (
         alert: {
           title: "Validation Error",
           message: errors.array()[0].msg,
-        },  
+        },
       });
     }
 
@@ -45,6 +45,7 @@ export const getLogin = async (
     const token = jwt.sign(
       {
         userId: user._id,
+        email: user.email,
         isAdmin: user.isAdmin,
       },
       process.env.JWT_SECRET!,

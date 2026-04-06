@@ -1,10 +1,11 @@
 import express from "express";
-import { getData, createProduct } from "../controllers/product";
+import upload from "../config/cloudinary";
+import { getData, createProduct, deleteProduct } from "../controllers/product";
 import { verifyAdmin } from "../middleware/authMiddleware";
 const router = express.Router();
-
-router.post("/product", verifyAdmin, createProduct);
+router.post("/product", verifyAdmin, upload.single("image"), createProduct);
 router.get("/data", getData);
-// router.delete("/product/:id", verifyAdmin, deleteProduct);
+
+router.delete("/product/:id", verifyAdmin, deleteProduct);
 
 export default router;
