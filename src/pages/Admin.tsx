@@ -83,13 +83,16 @@ const InputsCalculator: React.FC = () => {
     formData.append("items", JSON.stringify(cleanItems));
     formData.append("ingredients", JSON.stringify(cleanIngredients));
     try {
-      const response = await fetch("https://candle-1.onrender.com/product", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const response = await fetch(
+        "https://candle-1-ax6h.onrender.com/product",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: formData,
         },
-        body: formData,
-      });
+      );
       if (!response.ok) {
         throw new Error("Failed to save product");
       }
@@ -126,9 +129,12 @@ const InputsCalculator: React.FC = () => {
     if (!currentToken || currentToken === "null") return;
 
     try {
-      const response = await fetch("https://candle-1.onrender.com/orders", {
-        headers: { Authorization: `Bearer ${currentToken}` },
-      });
+      const response = await fetch(
+        "https://candle-1-ax6h.onrender.com/orders",
+        {
+          headers: { Authorization: `Bearer ${currentToken}` },
+        },
+      );
 
       if (response.status === 401) {
         dispatch(logoutUser());
@@ -148,7 +154,7 @@ const InputsCalculator: React.FC = () => {
   }, [fetchOrders]);
   const updateStatus = async (id: string, status: string) => {
     try {
-      const response = await fetch("https://candle-1.onrender.com/order", {
+      const response = await fetch("https://candle-1-ax6h.onrender.com/order", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

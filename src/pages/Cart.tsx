@@ -45,8 +45,8 @@ function Cart() {
 
     const cleanToken = currentToken.replace(/["]/g, "");
     const url = orderToEdit
-      ? "https://candle-1.onrender.com/order"
-      : "https://candle-1.onrender.com/cart";
+      ? "https://candle-1-ax6h.onrender.com/order"
+      : "https://candle-1-ax6h.onrender.com/cart";
     const method = orderToEdit ? "PATCH" : "POST";
 
     const totalAmount = cart.reduce(

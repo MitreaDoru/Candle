@@ -54,8 +54,8 @@ const Login = ({ isOpen, onClose }: LoginProps) => {
 
     const url =
       mode === "login"
-        ? "https://candle-1.onrender.com/login"
-        : "https://candle-1.onrender.com/signup";
+        ? "https://candle-1-ax6h.onrender.com/login"
+        : "https://candle-1-ax6h.onrender.com/signup";
 
     try {
       const res = await fetch(url, {

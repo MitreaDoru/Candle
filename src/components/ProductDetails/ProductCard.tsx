@@ -28,7 +28,7 @@ function ProductCard({ item }: { item: Product }) {
 
     try {
       const response = await fetch(
-        `https://candle-1.onrender.com/product/${item._id}`,
+        `https://candle-1-ax6h.onrender.com/product/${item._id}`,
         {
           method: "DELETE",
           headers: { Authorization: `Bearer ${token}` },

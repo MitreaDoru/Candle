@@ -46,7 +46,7 @@ const OrdersPage: React.FC = () => {
 
     const fetchOrders = async () => {
       try {
-        const response = await fetch("https://candle-1.onrender.com/orders", {
+        const response = await fetch("https://candle-1-ax6h.onrender.com/orders", {
           headers: { Authorization: `Bearer ${token.replace(/["]/g, "")}` },
         });
 
@@ -70,7 +70,7 @@ const OrdersPage: React.FC = () => {
   const handleDeleteOrder = async (id: string) => {
 
     try {
-      const response = await fetch("https://candle-1.onrender.com/order", {
+      const response = await fetch("https://candle-1-ax6h.onrender.com/order", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
