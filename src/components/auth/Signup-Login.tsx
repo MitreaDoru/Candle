@@ -1,11 +1,13 @@
 import { useState, type ChangeEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { alert, loginUser, logoutUser } from "../../features/actions/authSlice";
+import { alert, closeAlert, loginUser } from "../../features/actions/authSlice";
 import type { AppDispatch } from "../../app/store";
 import {
+  selectAlert,
   selectMode,
   selectUser,
 } from "../../features/actions/actionsSelectors";
+import Alert from "../ProductDetails/Alert";
 
 interface LoginProps {
   isOpen: boolean;
@@ -22,6 +24,8 @@ const Login = ({ isOpen, onClose }: LoginProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
   const mode = useSelector(selectMode);
+  const [loading, setLoading] = useState(false);
+  const alertState = useSelector(selectAlert);
   const [form, setForm] = useState<FormState>({
     email: "",
     password: "",
@@ -51,7 +55,7 @@ const Login = ({ isOpen, onClose }: LoginProps) => {
       );
       return;
     }
-
+    setLoading(true);
     const url =
       mode === "login"
         ? "https://candle-1-ax6h.onrender.com/login"
@@ -70,16 +74,22 @@ const Login = ({ isOpen, onClose }: LoginProps) => {
       });
 
       const data = await res.json();
-      if (!res.ok) {
-        return;
-      }
       if (mode !== "login") {
-        onClose();
         dispatch(alert(data.alert));
+        setLoading(false);
+        setTimeout(() => {
+          dispatch(closeAlert());
+          onClose();
+        }, 2000);
       } else {
         localStorage.setItem("token", data.token);
         dispatch(loginUser(data.user));
-        onClose();
+        setLoading(false);
+        dispatch(alert(data.alert));
+        setTimeout(() => {
+          dispatch(closeAlert());
+          onClose();
+        }, 2000);
       }
     } catch (err) {
       console.log(err);
@@ -88,75 +98,73 @@ const Login = ({ isOpen, onClose }: LoginProps) => {
 
   return (
     <div className="auth">
-      <div className="auth__overlay">
-        <div className="auth__modal">
-          <button className="auth__close-btn" onClick={onClose}>
-            ✕
-          </button>
+      {(!user || user.isAdmin) && (
+        <div className="auth__overlay">
+          <div className="auth__modal">
+            <button className="auth__close-btn" onClick={onClose}>
+              ✕
+            </button>
 
-          {!user || user.isAdmin ? (
-            <div className="auth__content">
-              <h2 className="auth__title">
-                {mode === "login" ? "Autentificare" : "Cont Nou"}
-              </h2>
+            {(!user || user.isAdmin) && (
+              <div className="auth__content">
+                <h2 className="auth__title">
+                  {mode === "login" ? "Autentificare" : "Cont Nou"}
+                </h2>
 
-              <form className="auth__form" onSubmit={submitHandler}>
-                <div className="auth__input-group">
-                  <input
-                    type="email"
-                    name="email"
-                    className="auth__input"
-                    placeholder="Email"
-                    onChange={changeHandler}
-                    required
-                  />
-                </div>
-
-                <div className="auth__input-group">
-                  <input
-                    type="password"
-                    name="password"
-                    className="auth__input"
-                    placeholder="Parolă"
-                    onChange={changeHandler}
-                    required
-                  />
-                </div>
-
-                {mode === "signup" && (
+                <form className="auth__form" onSubmit={submitHandler}>
                   <div className="auth__input-group">
                     <input
-                      type="password"
-                      name="confirmPassword"
+                      type="email"
+                      name="email"
                       className="auth__input"
-                      placeholder="Confirmă Parola"
+                      placeholder="Email"
                       onChange={changeHandler}
                       required
                     />
                   </div>
-                )}
 
-                <button type="submit" className="auth__submit-btn">
-                  {mode === "login" ? "Intră în cont" : "Înregistrare"}
-                </button>
-              </form>
-            </div>
-          ) : (
-            <div className="auth__logout-zone">
-              <h3 className="auth__welcome">Salut, {user.email}!</h3>
-              <button
-                onClick={() => {
-                  dispatch(logoutUser());
-                  onClose();
-                }}
-                className="auth__submit-btn auth__submit-btn--logout"
-              >
-                Ieșire din cont
-              </button>
-            </div>
-          )}
+                  <div className="auth__input-group">
+                    <input
+                      type="password"
+                      name="password"
+                      className="auth__input"
+                      placeholder="Parolă"
+                      onChange={changeHandler}
+                      required
+                    />
+                  </div>
+
+                  {mode === "signup" && (
+                    <div className="auth__input-group">
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        className="auth__input"
+                        placeholder="Confirmă Parola"
+                        onChange={changeHandler}
+                        required
+                      />
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="auth__submit-btn"
+                  >
+                    {!loading
+                      ? mode === "login"
+                        ? "Intră în cont"
+                        : "Înregistrare"
+                      : "Loading..."}
+                  </button>
+                </form>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      )}
+      {alertState.showAlert && <Alert />}
     </div>
   );
 };

@@ -39,8 +39,12 @@ const authSlice = createSlice({
       state.user = null;
       state.mode = "login";
     },
-    switchMode: (state) => {
-      state.mode = state.mode === "login" ? "signup" : "login";
+    switchMode: (state, action: PayloadAction<string | undefined>) => {
+      if (action?.payload) {
+        state.mode = action.payload;
+      } else {
+        state.mode = state.mode === "login" ? "signup" : "login";
+      }
     },
   },
 });

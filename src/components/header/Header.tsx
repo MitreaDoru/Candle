@@ -108,6 +108,7 @@ function Header() {
               onClick={() => {
                 setShowLogin(true);
                 setIsMenuOpen(false);
+                dispatch(switchMode("login"));
               }}
               className="header__user"
             >
@@ -135,7 +136,7 @@ function Header() {
                   onClick={() => {
                     setShowLogin(true);
                     setIsMenuOpen(false);
-                    dispatch(switchMode());
+                    dispatch(switchMode("signup"));
                   }}
                   className="header__btn header__btn--admin"
                 >

@@ -81,7 +81,6 @@ function App() {
   }
   return (
     <div className="app">
-      {/* 3. Provider-ul rămâne la fel, dar va folosi router-ul de tip Hash */}
       <RouterProvider router={router} />
     </div>
   );
