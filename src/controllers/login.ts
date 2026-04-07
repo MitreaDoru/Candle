@@ -27,7 +27,10 @@ export const getLogin = async (
 
     if (!user) {
       return res.status(401).json({
-        errorMessage: "No user found with this email",
+        alert: {
+          title: "Authentication Failed",
+          message: "No user found with this email",
+        },
       });
     }
 
